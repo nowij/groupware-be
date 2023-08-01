@@ -1,24 +1,19 @@
-package com.nowij.groupware.model;
+package com.nowij.groupware.dto;
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Entity
-@Table(name = "EMPLOYEE")
-public class Employee {
-    @Id
+public class EmployeeDto {
     private String employeeId;
-    @Column(name = "user_name")
-    private String name;
-    @Column(name = "user_passwd")
-    private String passwd;
+    private String userName;
+    private String userPasswd;
     private String email;
     private String phone;
     private String address;
