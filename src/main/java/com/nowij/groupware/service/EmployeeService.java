@@ -2,6 +2,8 @@ package com.nowij.groupware.service;
 
 import com.nowij.groupware.dto.EmployeeDto;
 
+import java.util.List;
+
 public interface EmployeeService {
-    EmployeeDto createEmployee(EmployeeDto dto);
+    List<EmployeeDto> employeeInfoList();
 }

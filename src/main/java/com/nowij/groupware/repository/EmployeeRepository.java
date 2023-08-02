@@ -1,10 +1,11 @@
 package com.nowij.groupware.repository;
 
-import com.nowij.groupware.model.Employee;
+import com.nowij.groupware.model.EmployeeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface EmployeeRepository extends JpaRepository<Employee, String> {
-    Optional<Employee> findByEmployeeId(String employeeId);
+public interface EmployeeRepository extends JpaRepository<EmployeeEntity, String> {
+    Optional<EmployeeEntity> findByEmployeeId(String employeeId);
+    Boolean existsByEmployeeId(String employeeId);
 }

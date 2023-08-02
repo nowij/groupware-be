@@ -6,13 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "EMPLOYEE")
-public class Employee {
+public class EmployeeEntity {
     @Id
     private String employeeId;
     @Column(name = "user_name")
@@ -26,4 +29,7 @@ public class Employee {
     private byte[] image;
     private String activeYn;
     private String positionCode;
+
+    @OneToMany(mappedBy = "deptCode")
+    private List<DepartmentEntity> departments = new ArrayList<>();
 }
