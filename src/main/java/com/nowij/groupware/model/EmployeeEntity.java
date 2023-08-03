@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "EMPLOYEE")
+@Table(name = "employee")
 public class EmployeeEntity {
     @Id
     private String employeeId;
@@ -25,11 +25,10 @@ public class EmployeeEntity {
     private String email;
     private String phone;
     private String address;
-    private String deptCode;
+    @ManyToOne
+    @JoinColumn(name = "dept_code")
+    private DepartmentEntity department;
     private byte[] image;
     private String activeYn;
     private String positionCode;
-
-    @OneToMany(mappedBy = "deptCode")
-    private List<DepartmentEntity> departments = new ArrayList<>();
 }

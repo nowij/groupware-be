@@ -44,7 +44,7 @@ public class AuthController {
         Optional<EmployeeEntity> optional = repository.findByEmployeeId(loginDto.getEmployeeId());
         if (optional.isPresent()) {
             EmployeeEntity employee = optional.get();
-            authDto.setDeptCode(employee.getDepartments().get(0).getDeptCode());
+            authDto.setDeptCode(employee.getDepartment().getDeptCode());
         }
 
         return new ResponseEntity<>(authDto, HttpStatus.OK);
