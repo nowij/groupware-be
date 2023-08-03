@@ -1,10 +1,12 @@
 package com.nowij.groupware.controller;
 
 import com.nowij.groupware.dto.AuthDto;
+import com.nowij.groupware.dto.EmployeeDto;
 import com.nowij.groupware.dto.LoginDto;
 import com.nowij.groupware.model.EmployeeEntity;
 import com.nowij.groupware.repository.EmployeeRepository;
 import com.nowij.groupware.security.JWTGenerator;
+import com.nowij.groupware.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +27,7 @@ import java.util.Optional;
 @RequestMapping("/auth")
 public class AuthController {
     private final EmployeeRepository repository;
-    private final PasswordEncoder encoder;
+    private final EmployeeService service;
     private final AuthenticationManager authenticationManager;
     private final JWTGenerator jwtGenerator;
 
@@ -46,6 +48,16 @@ public class AuthController {
         }
 
         return new ResponseEntity<>(authDto, HttpStatus.OK);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody EmployeeDto employeeDto) {
+        if (repository.existsByEmployeeId(employeeDto.getEmployeeId())) {
+            return new ResponseEntity<>("존재하는 사번입니다.", HttpStatus.BAD_REQUEST);
+        }
+
+        service.employeeRegister(employeeDto);
+        return new ResponseEntity<>("등록 성공", HttpStatus.OK);
     }
 
 }

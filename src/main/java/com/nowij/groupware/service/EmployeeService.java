@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface EmployeeService {
     List<EmployeeDto> employeeInfoList();
+    String employeeRegister(EmployeeDto dto);
 }
