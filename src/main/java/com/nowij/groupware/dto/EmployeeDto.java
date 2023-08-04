@@ -1,6 +1,8 @@
 package com.nowij.groupware.dto;
 
 
+import com.nowij.groupware.model.DepartmentEntity;
+import com.nowij.groupware.model.PositionEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,8 +19,8 @@ public class EmployeeDto {
     private String email;
     private String phone;
     private String address;
-    private String deptCode;
+    private DepartmentEntity department;
     private byte[] image;
     private String activeYn;
-    private String positionCode;
+    private PositionEntity position;
 }

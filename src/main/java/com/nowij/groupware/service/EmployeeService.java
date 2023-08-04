@@ -5,6 +5,8 @@ import com.nowij.groupware.dto.EmployeeDto;
 import java.util.List;
 
 public interface EmployeeService {
-    List<EmployeeDto> employeeInfoList();
+    List<EmployeeDto> selectemployeeList();
     String employeeRegister(EmployeeDto dto);
+    EmployeeDto selectMyPage(String employeeId);
+    EmployeeDto updateMypage(EmployeeDto dto);
 }
