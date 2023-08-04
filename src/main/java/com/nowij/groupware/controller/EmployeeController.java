@@ -19,8 +19,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/info")
-    public List<EmployeeDto> selectemployeeList() {
-        return service.selectemployeeList();
+    public List<EmployeeDto> selectEmployeeList() {
+        return service.selectEmployeeList();
+    }
+
+    @PostMapping("/info/search")
+    public List<EmployeeDto> selectEmployeeList(@RequestBody EmployeeDto dto) {
+        return service.selectEmployeeList(dto);
     }
 
     @PostMapping("/mypage")

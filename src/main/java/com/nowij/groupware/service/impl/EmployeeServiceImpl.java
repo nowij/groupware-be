@@ -9,11 +9,16 @@ import com.nowij.groupware.repository.DepartmentRepository;
 import com.nowij.groupware.repository.EmployeeRepository;
 import com.nowij.groupware.repository.PositionRepository;
 import com.nowij.groupware.service.EmployeeService;
+import com.nowij.groupware.specification.EmployeeSpec;
 import jakarta.transaction.Transactional;
 //import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,10 +39,27 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDto> selectemployeeList() {
+    public List<EmployeeDto> selectEmployeeList() {
         List<EmployeeEntity> lists = employeeRepository.findAll();
         return lists.stream()
                 .map(list -> entityToDto(list))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EmployeeDto> selectEmployeeList(EmployeeDto dto) {
+        Map<String, Object> searchMap = new HashMap<>();
+
+        if (dto.getEmployeeId() != null) searchMap.put("employeeId", dto.getEmployeeId());
+        if (dto.getUserName() != null) searchMap.put("userName", dto.getUserName());
+        if (dto.getPosition() != null) searchMap.put("positionCode", dto.getPosition().getPositionCode());
+        if (dto.getDepartment() != null) searchMap.put("deptCode", dto.getDepartment().getDeptCode());
+        if (dto.getPhone() != null) searchMap.put("phone", dto.getPhone());
+        if (dto.getActiveYn() != null) searchMap.put("activeYn", dto.getActiveYn());
+
+        return employeeRepository.findAll(EmployeeSpec.searchEmployee(searchMap))
+                .stream()
+                .map(emp -> entityToDto(emp))
                 .collect(Collectors.toList());
     }
 
@@ -64,7 +86,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         EmployeeDto updateDto = entityToDto(employeeRepository.save(entity));
         return updateDto;
     }
-
 
     private EmployeeDto entityToDto(EmployeeEntity entity) {
         EmployeeDto dto = new EmployeeDto();
