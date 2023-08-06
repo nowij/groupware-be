@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.util.Optional;
 
 public interface EmployeeRepository extends JpaRepository<EmployeeEntity, String>, JpaSpecificationExecutor<EmployeeEntity> {
-    EmployeeEntity findByEmployeeId(String employeeId);
+    Optional<EmployeeEntity> findByEmployeeId(String employeeId);
+    //EmployeeEntity findByEmployeeId(String employeeId);
     Boolean existsByEmployeeId(String employeeId);
 }

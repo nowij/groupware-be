@@ -73,12 +73,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto selectMyPage(String employeeId) {
-        return entityToDto(employeeRepository.findByEmployeeId(employeeId));
+        return entityToDto(employeeRepository.findById(employeeId).get());
     }
 
     @Override
     public EmployeeDto updateMypage(EmployeeDto dto) {
-        EmployeeEntity entity = employeeRepository.findByEmployeeId(dto.getEmployeeId());
+        EmployeeEntity entity = employeeRepository.findByEmployeeId(dto.getEmployeeId()).get();
         entity.setEmail(dto.getEmail());
         entity.setPhone(dto.getPhone());
         entity.setAddress(dto.getAddress());
