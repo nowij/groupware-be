@@ -28,7 +28,7 @@ public class JWTGenerator {
                 .setExpiration(expireDate)
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
-        log.debug("token : ", token);
+        log.debug("new token >>>>>> ", token);
         return token;
     }
     // Token을 복호화해 검증하는 메서드
