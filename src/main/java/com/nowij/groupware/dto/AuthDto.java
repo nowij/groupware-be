@@ -8,6 +8,7 @@ public class AuthDto {
     private String tokenType = "Bearer ";
     private String employeeId;
     private String deptCode;
+    private String userName;
 
     public AuthDto(String accessToken) {
         this.token = accessToken;
