@@ -13,6 +13,7 @@ import com.nowij.groupware.specification.EmployeeSpec;
 import jakarta.transaction.Transactional;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -27,15 +28,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
     private DepartmentRepository departmentRepository;
     private PositionRepository positionRepository;
-    //private PasswordEncoder encoder;
+    private PasswordEncoder encoder;
     public EmployeeServiceImpl(EmployeeRepository employeeRepository, DepartmentRepository departmentRepository
                                ,PositionRepository positionRepository
-            //, PasswordEncoder encoder
+            , PasswordEncoder encoder
     ) {
         this.employeeRepository = employeeRepository;
         this.departmentRepository = departmentRepository;
         this.positionRepository = positionRepository;
-        //this.encoder = encoder;
+        this.encoder = encoder;
     }
 
     @Override
@@ -65,7 +66,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public String employeeRegister(EmployeeDto dto) {
-        //dto.setUserPasswd(encoder.encode(dto.getUserPasswd())); // 패스워드 인코딩
+        dto.setUserPasswd(encoder.encode(dto.getUserPasswd())); // 패스워드 인코딩
         EmployeeEntity employeeEntity = dtoToEntity(dto);
         employeeRepository.save(employeeEntity);
         return null;

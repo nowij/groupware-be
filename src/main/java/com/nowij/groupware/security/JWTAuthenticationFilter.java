@@ -28,7 +28,8 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = getHWTFromRequest(request);
-        log.debug("token >>> ", token);
+        log.debug("token >>> ");
+        log.debug(token);
 
         // token 유효성 검사
         if (StringUtils.hasText(token) && jwtGenerator.validateToken(token)) {

@@ -19,6 +19,11 @@ import java.util.stream.Collectors;
 public class CommonServiceImpl implements CommonService {
     private DepartmentRepository departmentRepository;
     private PositionRepository positionRepository;
+
+    public CommonServiceImpl(DepartmentRepository departmentRepository, PositionRepository positionRepository) {
+        this.departmentRepository = departmentRepository;
+        this.positionRepository = positionRepository;
+    }
     @Override
     public List<CommonDto> selectDeptList() {
         return departmentRepository.findAll()
