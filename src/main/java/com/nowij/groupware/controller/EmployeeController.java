@@ -27,6 +27,11 @@ public class EmployeeController {
         return service.selectEmployeeList(dto);
     }
 
+    @GetMapping("/newId")
+    public String selectNewEmployeeId() {
+        return service.selectNewEmployeeId();
+    }
+
     @PostMapping("/mypage")
     public EmployeeDto selectMyPage(@RequestBody EmployeeDto dto) {
         return service.selectMyPage(dto.getEmployeeId());

@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.lang.reflect.Field;
+import java.util.Date;
 
 @Data
 @Builder
@@ -25,4 +26,5 @@ public class EmployeeDto {
     private byte[] image;
     private String activeYn;
     private PositionEntity position;
+    private Date joinDate;
 }

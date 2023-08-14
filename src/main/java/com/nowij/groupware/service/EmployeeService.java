@@ -8,6 +8,7 @@ public interface EmployeeService {
     List<EmployeeDto> selectEmployeeList();
     List<EmployeeDto> selectEmployeeList(EmployeeDto dto);
     String employeeRegister(EmployeeDto dto);
+    String selectNewEmployeeId();
     EmployeeDto selectMyPage(String employeeId);
     EmployeeDto updateMypage(EmployeeDto dto);
 }

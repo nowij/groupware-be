@@ -73,9 +73,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public String selectNewEmployeeId() {
+        return employeeRepository.selectNewEmployeeId();
+    }
+
+    @Override
     public EmployeeDto selectMyPage(String employeeId) {
         return entityToDto(employeeRepository.findById(employeeId).get());
     }
+
+
 
     @Override
     public EmployeeDto updateMypage(EmployeeDto dto) {
@@ -100,6 +107,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         dto.setActiveYn(entity.getActiveYn());
         dto.setDepartment(entity.getDepartment());
         dto.setPosition(entity.getPosition());
+        dto.setJoinDate(entity.getJoinDate());
         return dto;
     }
 
@@ -112,8 +120,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         entity.setEmail(dto.getEmail());
         entity.setPhone(dto.getPhone());
         entity.setAddress(dto.getAddress());
+        entity.setActiveYn(dto.getActiveYn());
         entity.setDepartment(departmentRepository.getById(dto.getDepartment().getDeptCode()));
         entity.setPosition(positionRepository.getById(dto.getPosition().getPositionCode()));
+        entity.setJoinDate(dto.getJoinDate());
         return entity;
     }
 }

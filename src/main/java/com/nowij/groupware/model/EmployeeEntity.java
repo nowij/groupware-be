@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -35,4 +36,5 @@ public class EmployeeEntity {
     @ManyToOne
     @JoinColumn(name = "position_code")
     private PositionEntity position;
+    private Date joinDate;
 }
