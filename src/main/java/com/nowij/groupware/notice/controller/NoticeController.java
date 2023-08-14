@@ -1,6 +1,10 @@
 package com.nowij.groupware.notice.controller;
 
 import com.nowij.groupware.notice.dto.NoticeDto;
+import com.nowij.groupware.notice.service.NoticeService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,8 +14,19 @@ import java.util.List;
 @RequestMapping("/notice")
 public class NoticeController {
 
+    private NoticeService service;
+
+    public NoticeController(NoticeService service) {
+        this.service = service;
+    }
     @RequestMapping("")
     public List<NoticeDto> selectNoticeList() {
-        return null;
+        return service.selectNoticeList();
+    }
+
+    @RequestMapping("/save")
+    public ResponseEntity<String> saveNotice(@RequestBody NoticeDto dto) {
+        service.saveNotice(dto);
+        return new ResponseEntity<>("notice save", HttpStatus.OK);
     }
 }

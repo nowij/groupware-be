@@ -77,8 +77,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         return entityToDto(employeeRepository.findById(employeeId).get());
     }
 
-
-
     @Override
     public EmployeeDto updateMypage(EmployeeDto dto) {
         EmployeeEntity entity = employeeRepository.findByEmployeeId(dto.getEmployeeId()).get();

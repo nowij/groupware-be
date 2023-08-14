@@ -2,7 +2,7 @@ package com.nowij.groupware.notice.dto;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 public class NoticeDto {
@@ -10,6 +10,7 @@ public class NoticeDto {
     private String title;
     private String content;
     private String employeeId;
+    private String employeeName;
     private String fixedYn;
-    private Date firstDate;
+    private String firstDate;
 }
