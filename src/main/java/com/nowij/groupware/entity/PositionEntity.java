@@ -1,4 +1,4 @@
-package com.nowij.groupware.model;
+package com.nowij.groupware.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

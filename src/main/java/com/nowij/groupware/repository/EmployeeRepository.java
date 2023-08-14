@@ -1,7 +1,6 @@
 package com.nowij.groupware.repository;
 
-import com.nowij.groupware.dto.EmployeeDto;
-import com.nowij.groupware.model.EmployeeEntity;
+import com.nowij.groupware.entity.EmployeeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;

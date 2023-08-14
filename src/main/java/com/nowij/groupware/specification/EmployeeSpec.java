@@ -1,17 +1,12 @@
 package com.nowij.groupware.specification;
 
-import com.nowij.groupware.dto.EmployeeDto;
-import com.nowij.groupware.model.EmployeeEntity;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
+import com.nowij.groupware.entity.EmployeeEntity;
 import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class EmployeeSpec {
     public static Specification<EmployeeEntity> searchEmployee(Map<String, Object> searchKey) {

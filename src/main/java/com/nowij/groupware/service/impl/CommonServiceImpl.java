@@ -1,12 +1,8 @@
 package com.nowij.groupware.service.impl;
 
 import com.nowij.groupware.dto.CommonDto;
-import com.nowij.groupware.dto.DepartmentDto;
-import com.nowij.groupware.dto.EmployeeDto;
-import com.nowij.groupware.dto.PositionDto;
-import com.nowij.groupware.model.DepartmentEntity;
-import com.nowij.groupware.model.EmployeeEntity;
-import com.nowij.groupware.model.PositionEntity;
+import com.nowij.groupware.entity.DepartmentEntity;
+import com.nowij.groupware.entity.PositionEntity;
 import com.nowij.groupware.repository.DepartmentRepository;
 import com.nowij.groupware.repository.PositionRepository;
 import com.nowij.groupware.service.CommonService;

@@ -1,10 +1,7 @@
 package com.nowij.groupware.service.impl;
 
 import com.nowij.groupware.dto.EmployeeDto;
-import com.nowij.groupware.exception.ResourceNotFoundException;
-import com.nowij.groupware.model.DepartmentEntity;
-import com.nowij.groupware.model.EmployeeEntity;
-import com.nowij.groupware.model.PositionEntity;
+import com.nowij.groupware.entity.EmployeeEntity;
 import com.nowij.groupware.repository.DepartmentRepository;
 import com.nowij.groupware.repository.EmployeeRepository;
 import com.nowij.groupware.repository.PositionRepository;
@@ -12,14 +9,12 @@ import com.nowij.groupware.service.EmployeeService;
 import com.nowij.groupware.specification.EmployeeSpec;
 import jakarta.transaction.Transactional;
 //import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service

@@ -1,14 +1,13 @@
 package com.nowij.groupware.dto;
 
 
-import com.nowij.groupware.model.DepartmentEntity;
-import com.nowij.groupware.model.PositionEntity;
+import com.nowij.groupware.entity.DepartmentEntity;
+import com.nowij.groupware.entity.PositionEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.lang.reflect.Field;
 import java.util.Date;
 
 @Data

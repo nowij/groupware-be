@@ -1,7 +1,7 @@
 package com.nowij.groupware.security;
 
-import com.nowij.groupware.model.DepartmentEntity;
-import com.nowij.groupware.model.EmployeeEntity;
+import com.nowij.groupware.entity.DepartmentEntity;
+import com.nowij.groupware.entity.EmployeeEntity;
 import com.nowij.groupware.repository.DepartmentRepository;
 import com.nowij.groupware.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
