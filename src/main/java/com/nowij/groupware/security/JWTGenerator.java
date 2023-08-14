@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
@@ -16,11 +17,14 @@ import java.util.Date;
 public class JWTGenerator {
     private static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512); // 암호화 알고리즘
 
+    @Value("${jwt.expireTime}")
+    private int expireTime;
+
     // Token을 생성하는 메서드
     public String generateToken(Authentication authentication) {
         String name = authentication.getName();
         Date currentDate = new Date();
-        Date expireDate = new Date(currentDate.getTime() + 1800000); // 30분
+        Date expireDate = new Date(currentDate.getTime() + expireTime); // 30분
 
         String token = Jwts.builder()
                 .setSubject(name)
