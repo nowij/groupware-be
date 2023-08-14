@@ -1,6 +1,6 @@
 package com.nowij.groupware.specification;
 
-import com.nowij.groupware.entity.EmployeeEntity;
+import com.nowij.groupware.employee.domain.EmployeeEntity;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 

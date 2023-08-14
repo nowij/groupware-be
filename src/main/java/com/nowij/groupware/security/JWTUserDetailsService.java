@@ -1,9 +1,9 @@
 package com.nowij.groupware.security;
 
-import com.nowij.groupware.entity.DepartmentEntity;
-import com.nowij.groupware.entity.EmployeeEntity;
-import com.nowij.groupware.repository.DepartmentRepository;
-import com.nowij.groupware.repository.EmployeeRepository;
+import com.nowij.groupware.department.domain.DepartmentEntity;
+import com.nowij.groupware.employee.domain.EmployeeEntity;
+import com.nowij.groupware.department.repository.DepartmentRepository;
+import com.nowij.groupware.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
