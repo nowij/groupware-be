@@ -7,6 +7,7 @@ import com.nowij.groupware.employee.repository.EmployeeRepository;
 import com.nowij.groupware.position.repository.PositionRepository;
 import com.nowij.groupware.employee.service.EmployeeService;
 import com.nowij.groupware.specification.EmployeeSpec;
+import io.micrometer.common.util.StringUtils;
 import jakarta.transaction.Transactional;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -45,13 +46,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<EmployeeDto> selectEmployeeList(EmployeeDto dto) {
         Map<String, Object> searchMap = new HashMap<>();
-
-        if (dto.getEmployeeId() != null) searchMap.put("employeeId", dto.getEmployeeId());
-        if (dto.getUserName() != null) searchMap.put("userName", dto.getUserName());
-        if (dto.getPosition() != null) searchMap.put("positionCode", dto.getPosition().getPositionCode());
-        if (dto.getDepartment() != null) searchMap.put("deptCode", dto.getDepartment().getDeptCode());
-        if (dto.getPhone() != null) searchMap.put("phone", dto.getPhone());
-        if (dto.getActiveYn() != null) searchMap.put("activeYn", dto.getActiveYn());
+        if (!StringUtils.isEmpty(dto.getEmployeeId())) searchMap.put("employeeId", dto.getEmployeeId());
+        if (!StringUtils.isEmpty(dto.getUserName())) searchMap.put("name", dto.getUserName());
+        if (!StringUtils.isEmpty(dto.getPosition().getPositionCode())) searchMap.put("position", dto.getPosition().getPositionCode());
+        if (!StringUtils.isEmpty(dto.getDepartment().getDeptCode())) searchMap.put("department", dto.getDepartment().getDeptCode());
+        if (!StringUtils.isEmpty(dto.getPhone())) searchMap.put("phone", dto.getPhone());
+        if (!StringUtils.isEmpty(dto.getActiveYn())) searchMap.put("activeYn", dto.getActiveYn());
 
         return employeeRepository.findAll(EmployeeSpec.searchEmployee(searchMap))
                 .stream()
