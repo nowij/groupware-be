@@ -1,5 +1,6 @@
 package com.nowij.groupware.employee.service;
 
+import com.nowij.groupware.employee.domain.EmployeeEntity;
 import com.nowij.groupware.employee.dto.EmployeeDto;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface EmployeeService {
     String selectNewEmployeeId();
     EmployeeDto selectMyPage(String employeeId);
     EmployeeDto updateMypage(EmployeeDto dto);
+    void deleteEmployeeId(String id);
+    EmployeeEntity getExistEmployee(String id);
 }

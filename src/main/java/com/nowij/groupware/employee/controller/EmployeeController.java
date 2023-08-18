@@ -2,6 +2,8 @@ package com.nowij.groupware.employee.controller;
 
 import com.nowij.groupware.employee.dto.EmployeeDto;
 import com.nowij.groupware.employee.service.EmployeeService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,6 +41,12 @@ public class EmployeeController {
     @PostMapping("/mypage/update")
     public EmployeeDto updateMypage(@RequestBody EmployeeDto dto) {
         return service.updateMypage(dto);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteEmployeeId(@PathVariable("id") String id) {
+        service.deleteEmployeeId(id);
+        return new ResponseEntity<>("삭제되었습니다.", HttpStatus.OK);
     }
 }
 

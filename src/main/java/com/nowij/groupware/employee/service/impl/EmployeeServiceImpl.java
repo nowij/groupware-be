@@ -4,6 +4,7 @@ import com.nowij.groupware.employee.dto.EmployeeDto;
 import com.nowij.groupware.employee.domain.EmployeeEntity;
 import com.nowij.groupware.department.repository.DepartmentRepository;
 import com.nowij.groupware.employee.repository.EmployeeRepository;
+import com.nowij.groupware.exception.ResourceNotFoundException;
 import com.nowij.groupware.position.repository.PositionRepository;
 import com.nowij.groupware.employee.service.EmployeeService;
 import com.nowij.groupware.specification.EmployeeSpec;
@@ -13,6 +14,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,6 +89,23 @@ public class EmployeeServiceImpl implements EmployeeService {
         EmployeeDto updateDto = entityToDto(employeeRepository.save(entity));
         return updateDto;
     }
+
+    @Override
+    public void deleteEmployeeId(String id) {
+        EmployeeEntity employee = getExistEmployee(id);
+        Date date = new Date();
+        employee.setActiveYn("N");
+        employee.setLeaveDate(date);
+        employeeRepository.save(employee);
+    }
+
+    @Override
+    public EmployeeEntity getExistEmployee(String id) {
+        EmployeeEntity entity = employeeRepository.findByEmployeeId(id).orElseThrow(() ->
+            new ResourceNotFoundException("Employee could not be found"));
+        return entity;
+    }
+
 
     private EmployeeDto entityToDto(EmployeeEntity entity) {
         EmployeeDto dto = new EmployeeDto();

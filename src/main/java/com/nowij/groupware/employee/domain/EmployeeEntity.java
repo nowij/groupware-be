@@ -37,4 +37,5 @@ public class EmployeeEntity {
     @JoinColumn(name = "position_code")
     private PositionEntity position;
     private Date joinDate;
+    private Date leaveDate;
 }
