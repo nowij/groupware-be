@@ -10,8 +10,7 @@ public interface EmployeeService {
     List<EmployeeDto> selectEmployeeList(EmployeeDto dto);
     String employeeRegister(EmployeeDto dto);
     String selectNewEmployeeId();
-    EmployeeDto selectMyPage(String employeeId);
-    EmployeeDto updateMypage(EmployeeDto dto);
     void deleteEmployeeId(String id);
     EmployeeEntity getExistEmployee(String id);
+    EmployeeDto saveInfoOnByAdmin(EmployeeDto dto);
 }

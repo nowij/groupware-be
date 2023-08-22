@@ -33,20 +33,16 @@ public class EmployeeController {
         return service.selectNewEmployeeId();
     }
 
-    @PostMapping("/mypage")
-    public EmployeeDto selectMyPage(@RequestBody EmployeeDto dto) {
-        return service.selectMyPage(dto.getEmployeeId());
-    }
-
-    @PostMapping("/mypage/update")
-    public EmployeeDto updateMypage(@RequestBody EmployeeDto dto) {
-        return service.updateMypage(dto);
-    }
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteEmployeeId(@PathVariable("id") String id) {
         service.deleteEmployeeId(id);
-        return new ResponseEntity<>("삭제되었습니다.", HttpStatus.OK);
+        return new ResponseEntity<>("Success Delete!", HttpStatus.OK);
+    }
+
+    @PutMapping("/save/{id}")
+    public ResponseEntity<String> saveInfoOnByAdmin(@RequestBody EmployeeDto dto) {
+        service.saveInfoOnByAdmin(dto);
+        return new ResponseEntity<>("Success Update!", HttpStatus.OK);
     }
 }
 

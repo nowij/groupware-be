@@ -75,22 +75,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeDto selectMyPage(String employeeId) {
-        return entityToDto(employeeRepository.findById(employeeId).get());
-    }
-
-    @Override
-    public EmployeeDto updateMypage(EmployeeDto dto) {
-        EmployeeEntity entity = employeeRepository.findByEmployeeId(dto.getEmployeeId()).get();
-        entity.setEmail(dto.getEmail());
-        entity.setPhone(dto.getPhone());
-        entity.setAddress(dto.getAddress());
-        // TODO 사진 업로드
-        EmployeeDto updateDto = entityToDto(employeeRepository.save(entity));
-        return updateDto;
-    }
-
-    @Override
     public void deleteEmployeeId(String id) {
         EmployeeEntity employee = getExistEmployee(id);
         Date date = new Date();
@@ -104,6 +88,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         EmployeeEntity entity = employeeRepository.findByEmployeeId(id).orElseThrow(() ->
             new ResourceNotFoundException("Employee could not be found"));
         return entity;
+    }
+
+    @Override
+    public EmployeeDto saveInfoOnByAdmin(EmployeeDto dto) {
+        EmployeeEntity entity = getExistEmployee(dto.getEmployeeId());
+        entity.setName(dto.getUserName());
+        entity.setDepartment(dto.getDepartment());
+        entity.setPosition(dto.getPosition());
+        entity.setEmail(dto.getEmail());
+        entity.setPhone(dto.getPhone());
+        entity.setAddress(dto.getAddress());
+        return entityToDto(employeeRepository.save(entity));
     }
 
 
