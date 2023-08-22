@@ -57,7 +57,7 @@ public class AuthController {
         }
 
         service.employeeRegister(employeeDto);
-        return new ResponseEntity<>("등록 성공", HttpStatus.OK);
+        return new ResponseEntity<>("등록 성공", HttpStatus.CREATED); // 201
     }
 
 }
