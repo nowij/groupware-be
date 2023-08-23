@@ -7,4 +7,5 @@ import java.util.List;
 public interface NoticeService {
     List<NoticeDto> selectNoticeList();
     void saveNotice(NoticeDto dto);
+    NoticeDto selectNoticeContent(int no);
 }

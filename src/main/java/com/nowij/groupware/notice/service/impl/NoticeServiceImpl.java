@@ -47,6 +47,15 @@ public class NoticeServiceImpl implements NoticeService {
         noticeRepository.save(entity);
     }
 
+    @Override
+    public NoticeDto selectNoticeContent(int no) {
+        Optional<NoticeEntity> optional = noticeRepository.findById(no);
+        if (optional.isPresent()) {
+            return entityToDto(optional.get());
+        }
+        return null;
+    }
+
     public NoticeDto entityToDto(NoticeEntity entity) {
         NoticeDto dto = new NoticeDto();
         dto.setNoticeNo(entity.getNoticeNo());

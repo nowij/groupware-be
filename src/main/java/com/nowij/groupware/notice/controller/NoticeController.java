@@ -4,6 +4,7 @@ import com.nowij.groupware.notice.dto.NoticeDto;
 import com.nowij.groupware.notice.service.NoticeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,5 +29,10 @@ public class NoticeController {
     public ResponseEntity<String> saveNotice(@RequestBody NoticeDto dto) {
         service.saveNotice(dto);
         return new ResponseEntity<>("notice save", HttpStatus.OK);
+    }
+
+    @RequestMapping("/content/{no}")
+    public NoticeDto selectNoticeContent(@PathVariable("no") int no) {
+        return service.selectNoticeContent(no);
     }
 }
