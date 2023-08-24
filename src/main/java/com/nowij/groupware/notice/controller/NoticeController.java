@@ -35,4 +35,17 @@ public class NoticeController {
     public NoticeDto selectNoticeContent(@PathVariable("no") int no) {
         return service.selectNoticeContent(no);
     }
+
+    @RequestMapping("/content/update")
+    public NoticeDto updateNoticeContent(@RequestBody NoticeDto dto) {
+        return service.updateNoticeContent(dto);
+    }
+    @RequestMapping("/delete")
+    public ResponseEntity<String> deleteNotice(@RequestBody int no) {
+        int result = service.deleteNotice(no);
+        if (result != 0) {
+            return new ResponseEntity<>("Notice Delete Success!", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Notice Delete Error!", HttpStatus.BAD_REQUEST);
+    }
 }

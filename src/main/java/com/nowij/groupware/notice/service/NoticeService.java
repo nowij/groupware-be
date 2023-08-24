@@ -8,4 +8,6 @@ public interface NoticeService {
     List<NoticeDto> selectNoticeList();
     void saveNotice(NoticeDto dto);
     NoticeDto selectNoticeContent(int no);
+    NoticeDto updateNoticeContent(NoticeDto dto);
+    int deleteNotice(int no);
 }
