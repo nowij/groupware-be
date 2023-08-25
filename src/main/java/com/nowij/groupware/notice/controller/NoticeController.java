@@ -1,13 +1,12 @@
 package com.nowij.groupware.notice.controller;
 
+import com.nowij.groupware.comm.dto.PageDto;
+import com.nowij.groupware.comm.dto.PageResponseDto;
 import com.nowij.groupware.notice.dto.NoticeDto;
 import com.nowij.groupware.notice.service.NoticeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,9 +19,9 @@ public class NoticeController {
     public NoticeController(NoticeService service) {
         this.service = service;
     }
-    @RequestMapping("")
-    public List<NoticeDto> selectNoticeList() {
-        return service.selectNoticeList();
+    @PostMapping("")
+    public PageResponseDto selectNoticeList(@RequestBody PageDto dto) {
+        return service.selectNoticeList(dto);
     }
 
     @RequestMapping("/save")

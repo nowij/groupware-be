@@ -1,11 +1,16 @@
 package com.nowij.groupware.notice.service.impl;
 
+import com.nowij.groupware.comm.dto.PageDto;
+import com.nowij.groupware.comm.dto.PageResponseDto;
 import com.nowij.groupware.employee.domain.EmployeeEntity;
 import com.nowij.groupware.employee.repository.EmployeeRepository;
 import com.nowij.groupware.notice.domain.NoticeEntity;
 import com.nowij.groupware.notice.dto.NoticeDto;
 import com.nowij.groupware.notice.repository.NoticeRepository;
 import com.nowij.groupware.notice.service.NoticeService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -29,11 +34,22 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public List<NoticeDto> selectNoticeList() {
-        List<NoticeEntity> lists = noticeRepository.findAll(Sort.by(Sort.Direction.DESC, "fixedYn", "noticeNo"));
-        return lists.stream()
-                .map(list ->entityToDto(list))
-                .collect(Collectors.toList());
+    public PageResponseDto selectNoticeList(PageDto dto) {
+        int start = dto.getPageNo();
+        int end = dto.getPageSize();
+        Pageable pageable = PageRequest.of(start, end, Sort.by("fixedYn", "noticeNo").descending());
+        Page<NoticeEntity> notices = noticeRepository.findAll(pageable);
+        List<NoticeEntity> listOfIndex = notices.getContent();
+        List<NoticeDto> content = listOfIndex.stream().map(m -> entityToDto(m)).collect(Collectors.toList());
+
+        PageResponseDto result = new PageResponseDto();
+        result.setContent(content);
+        result.setPageNo(notices.getNumber());
+        result.setPageSize(notices.getSize());
+        result.setTotalElements(notices.getTotalElements());
+        result.setTotalPages(notices.getTotalPages());
+        result.setLast(notices.isLast());
+        return result;
     }
 
     @Override

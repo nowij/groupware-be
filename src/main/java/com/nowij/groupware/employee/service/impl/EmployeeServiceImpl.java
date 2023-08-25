@@ -1,5 +1,7 @@
 package com.nowij.groupware.employee.service.impl;
 
+import com.nowij.groupware.comm.dto.PageDto;
+import com.nowij.groupware.comm.dto.PageResponseDto;
 import com.nowij.groupware.employee.dto.EmployeeDto;
 import com.nowij.groupware.employee.domain.EmployeeEntity;
 import com.nowij.groupware.department.repository.DepartmentRepository;
@@ -11,6 +13,10 @@ import com.nowij.groupware.specification.EmployeeSpec;
 import io.micrometer.common.util.StringUtils;
 import jakarta.transaction.Transactional;
 //import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -38,12 +44,23 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDto> selectEmployeeList() {
-        List<EmployeeEntity> lists = employeeRepository.findAll();
-        return lists.stream()
-                .map(list -> entityToDto(list))
-                .collect(Collectors.toList());
+    public PageResponseDto selectEmployeeList(PageDto dto) {
+        int start = dto.getPageNo();
+        int end = dto.getPageSize();
+        Pageable pageable = PageRequest.of(start, end, Sort.by("employeeId").ascending());
+        Page<EmployeeEntity> employees = employeeRepository.findAll(pageable);
+        List<EmployeeEntity> listOfIndex = employees.getContent();
+        List<EmployeeDto> content = listOfIndex.stream().map(m -> entityToDto(m)).collect(Collectors.toList());
+        PageResponseDto result = new PageResponseDto();
+        result.setContent(content);
+        result.setTotalElements(employees.getTotalElements());
+        result.setPageNo(employees.getNumber());
+        result.setPageSize(employees.getSize());
+        result.setTotalPages(employees.getTotalPages());
+        result.setLast(employees.isLast());
+        return result;
     }
+
 
     @Override
     public List<EmployeeDto> selectEmployeeList(EmployeeDto dto) {

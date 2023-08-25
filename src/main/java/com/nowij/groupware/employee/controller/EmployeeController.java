@@ -1,5 +1,7 @@
 package com.nowij.groupware.employee.controller;
 
+import com.nowij.groupware.comm.dto.PageDto;
+import com.nowij.groupware.comm.dto.PageResponseDto;
 import com.nowij.groupware.employee.dto.EmployeeDto;
 import com.nowij.groupware.employee.service.EmployeeService;
 import org.springframework.http.HttpStatus;
@@ -18,12 +20,15 @@ public class EmployeeController {
         this.service = service;
     }
 
-    @GetMapping("/info")
-    public List<EmployeeDto> selectEmployeeList() {
-        return service.selectEmployeeList();
+//    public List<EmployeeDto> selectEmployeeList() {
+//        return service.selectEmployeeList();
+//    }
+    @PostMapping("")
+    public PageResponseDto selectEmployeeList(@RequestBody PageDto dto) {
+        return service.selectEmployeeList(dto);
     }
 
-    @PostMapping("/info/search")
+    @PostMapping("/search")
     public List<EmployeeDto> selectEmployeeList(@RequestBody EmployeeDto dto) {
         return service.selectEmployeeList(dto);
     }
