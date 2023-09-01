@@ -47,8 +47,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public PageResponseDto selectEmployeeList(PageDto dto) {
         int start = dto.getPageNo();
         int end = dto.getPageSize();
+        Map<String, Object> searchMap = new HashMap<>();
+        searchMap.put("activeYn", "Y");
         Pageable pageable = PageRequest.of(start, end, Sort.by("employeeId").ascending());
-        Page<EmployeeEntity> employees = employeeRepository.findAll(pageable);
+        Page<EmployeeEntity> employees = employeeRepository.findAll(EmployeeSpec.searchEmployee(searchMap), pageable);
         List<EmployeeEntity> listOfIndex = employees.getContent();
         List<EmployeeDto> content = listOfIndex.stream().map(m -> entityToDto(m)).collect(Collectors.toList());
         PageResponseDto result = new PageResponseDto();
