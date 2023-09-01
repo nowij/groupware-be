@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface EmployeeService {
     PageResponseDto selectEmployeeList(PageDto dto);
-    List<EmployeeDto> selectEmployeeList(EmployeeDto dto);
+    PageResponseDto selectSpecEmployee(EmployeeDto dto);
     String employeeRegister(EmployeeDto dto);
     String selectNewEmployeeId();
     void deleteEmployeeId(String id);

@@ -63,7 +63,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     @Override
-    public List<EmployeeDto> selectEmployeeList(EmployeeDto dto) {
+    public PageResponseDto selectSpecEmployee(EmployeeDto dto) {
         Map<String, Object> searchMap = new HashMap<>();
         if (!StringUtils.isEmpty(dto.getEmployeeId())) searchMap.put("employeeId", dto.getEmployeeId());
         if (!StringUtils.isEmpty(dto.getUserName())) searchMap.put("name", dto.getUserName());
@@ -72,10 +72,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (!StringUtils.isEmpty(dto.getPhone())) searchMap.put("phone", dto.getPhone());
         if (!StringUtils.isEmpty(dto.getActiveYn())) searchMap.put("activeYn", dto.getActiveYn());
 
-        return employeeRepository.findAll(EmployeeSpec.searchEmployee(searchMap))
+        employeeRepository.findAll(EmployeeSpec.searchEmployee(searchMap));
+        List<EmployeeDto> content = employeeRepository.findAll(EmployeeSpec.searchEmployee(searchMap))
                 .stream()
                 .map(emp -> entityToDto(emp))
                 .collect(Collectors.toList());
+
+        PageResponseDto result = new PageResponseDto();
+        result.setContent(content);
+        result.setTotalElements(content.size());
+        return result;
     }
 
     @Override

@@ -20,17 +20,14 @@ public class EmployeeController {
         this.service = service;
     }
 
-//    public List<EmployeeDto> selectEmployeeList() {
-//        return service.selectEmployeeList();
-//    }
     @PostMapping("")
     public PageResponseDto selectEmployeeList(@RequestBody PageDto dto) {
         return service.selectEmployeeList(dto);
     }
 
     @PostMapping("/search")
-    public List<EmployeeDto> selectEmployeeList(@RequestBody EmployeeDto dto) {
-        return service.selectEmployeeList(dto);
+    public PageResponseDto selectSpecEmployee(@RequestBody EmployeeDto dto) {
+        return service.selectSpecEmployee(dto);
     }
 
     @GetMapping("/newId")
