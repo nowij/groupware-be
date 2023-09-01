@@ -78,7 +78,7 @@ public class NoticeServiceImpl implements NoticeService {
         if (optional.isPresent()) {
             NoticeEntity entity = optional.get();
             entity.setContent(dto.getContent());
-            entity.setTitle(dto.getContent());
+            entity.setTitle(dto.getTitle());
             entity.setFixedYn(dto.getFixedYn());
             return entityToDto(noticeRepository.save(entity));
         }
